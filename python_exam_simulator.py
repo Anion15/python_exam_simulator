@@ -208,8 +208,10 @@ while c <= int(b - 1):
     if int(c)%100 == 0:
         print(str(c) + "번째.................... " + str(c))
     else:
-
-        print(str(c) + "번째. ")
+        if int(c)%10 == 0:
+            print(str(c) + "번째.......... " + str(c))
+        else:
+            print(str(c) + "번째. ")
     시험지정답 = []
     시험지무작위입력 = []
     채점 = []
