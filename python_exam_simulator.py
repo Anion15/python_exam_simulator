@@ -4,12 +4,14 @@ import time
 
 
 
-#=============================================================
-
-
 시험지정답 = []
 시험지무작위입력 = []
 채점 = []
+입력받기 = 0
+시험입력무작위 = 0
+시험입력같은번호 = 0
+시험입력같은번호의번호 = 0
+ok = 0
 점수총합 = 0
 정답개수 = 0
 오답개수 = 0
@@ -19,7 +21,76 @@ import time
 최저점수 = 100
 최저점수시험번호 = 0
 a = 0
-b = int(input("얼마나 simulation 할건가요? : "))
+while True:
+    입력받기 = input("<시험지 입력 방식>\n\n\n1. 무작위 찍기\n2. 한 번호만 찍기\n\n숫자로 입력 : ")
+    
+    # 입력값이 숫자 또는 소수인지 확인
+    try:
+        입력받기 = float(입력받기)
+        # 입력값이 정수이면서 1 또는 2인지 확인
+        if 입력받기.is_integer() and 1 <= int(입력받기) <= 2:
+            break
+        else:
+            print("1부터 2까지의 정수로 입력하세요.")
+            print()
+            print()
+            print()
+            print()
+            print()
+    except ValueError:
+        print("숫자를 입력하세요.")
+        print()
+        print()
+        print()
+        print()
+        print()
+
+# 입력값을 정수로 변환
+입력받기 = int(입력받기)
+
+if 입력받기 == 1:
+    시험입력무작위 = 1
+    시험입력같은번호 = 0
+
+elif 입력받기 == 2:
+    시험입력무작위 = 0
+    시험입력같은번호 = 1
+    print()
+    print()
+    print()
+        
+    while True:
+        try:
+            입력받기 = float(input("1부터 5까지의 정수를 입력하세요: "))
+            # 입력값이 정수이면서 1부터 5까지인지 확인
+            if 입력받기.is_integer() and 1 <= int(입력받기) <= 5:
+                break
+            else:
+                print("1부터 5까지의 정수로 다시 입력하세요.")
+        except ValueError:
+            print("숫자를 입력하세요.")
+                
+    시험입력같은번호의번호 = int(입력받기)
+
+
+
+
+print()
+print()
+print()
+print()
+print()
+print()
+while True:
+    try:
+        b = int(input("얼마나 simulation 할건가요? : "))
+        if b <= 0:
+            print("양의 정수를 입력하세요.")
+        else:
+            break
+    except ValueError:
+        print("올바른 숫자를 입력하세요.")
+
 print()
 시험지정답 = []
 시험지무작위입력 = []
@@ -34,6 +105,9 @@ print()
 최저점수시험번호 = 0
 a = 0
 
+
+
+#=============================================================
 
 start_time = time.perf_counter()  # 시작 시간 저장
 
@@ -43,7 +117,10 @@ c = 1
 if int(c)%100 == 0:
     print(str(c) + "번째.................... " + str(c))
 else:
-    print(str(c) + "번째. ")
+    if int(c)%10 == 0:
+        print(str(c) + "번째.......... " + str(c))
+    else:
+        print(str(c) + "번째. ")
 시험지정답 = []
 시험지무작위입력 = []
 채점 = []
@@ -57,9 +134,16 @@ while a <= 25:
     시험지정답.append(random.randint(1,5))
 
 a = 0
-while a <= 25:
-    a = a + 1
-    시험지무작위입력.append(random.randint(1,5))
+if int(시험입력무작위) == 1:
+    while a <= 25:
+        a = a + 1
+        시험지무작위입력.append(random.randint(1,5))
+else:
+    if int(시험입력같은번호) == 1:
+        while a <= 25:
+            a = a + 1
+            시험지무작위입력.append(시험입력같은번호의번호)
+
 
 a = 0
 정답개수 = 0
@@ -138,11 +222,20 @@ while c <= int(b - 1):
         a = a + 1
         시험지정답.append(random.randint(1,5))
 
-    a = 0
-    while a <= 24:
-        a = a + 1
-        시험지무작위입력.append(random.randint(1,5))
 
+    a = 0
+    if int(시험입력무작위) == 1:
+        while a <= 25:
+            a = a + 1
+            시험지무작위입력.append(random.randint(1,5))
+    else:
+        if int(시험입력같은번호) == 1:
+            while a <= 25:
+                a = a + 1
+                시험지무작위입력.append(시험입력같은번호의번호)
+
+
+    
     a = 0
     정답개수 = 0
     오답개수 = 0
