@@ -275,3 +275,6 @@ print()
 print()
 print("최고점수 : " + str(최고점수) + "점 (" + str(최고점수시험번호) + ")")
 print("최저점수 : " + str(최저점수) + "점 (" + str(최저점수시험번호) + ")")
+
+while True:
+    pass
